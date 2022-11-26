@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="20dp">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ohayo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/quicksandregular"
+                android:text="Ohayou"
+                android:textSize="14dp"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ohayo"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/quicksandbold"
+                android:text="John Doe"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <EditText
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search"
+        android:textSize="16dp"
+        android:fontFamily="@font/quicksandsemibold"
+        android:layout_gravity="center"
+        android:background="@drawable/nav_shape"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:backgroundTint="@color/silver"
+        android:drawableEnd="@drawable/ic_round_search_24"
+        android:drawableRight="@drawable/ic_round_search_24"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/black"
+        android:maxLines="1"
+        android:inputType="text"
+        android:id="@+id/kolomcari"
+        android:maxLength="32"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hasil"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="2dp"
+        android:layout_marginTop="24dp"/>
+
+
+</LinearLayout>

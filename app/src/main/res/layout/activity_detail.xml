@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="130dp">
+
+            <ImageView
+                android:id="@+id/mangaimage"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:scaleType="centerCrop"
+                android:background="@color/gray"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_round_arrow_back_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="@drawable/nav_shape"
+                android:padding="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                app:backgroundTint="@color/white"
+                />
+
+            <ImageButton
+                android:id="@+id/btn_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_round_share_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@drawable/nav_shape"
+                android:padding="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                app:backgroundTint="@color/white"
+                />
+
+            <Button
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="..."
+                android:drawableLeft="@drawable/ic_round_contacts_24"
+                android:textColor="@color/accent"
+                android:fontFamily="@font/quicksandregular"
+                android:textSize="14dp"
+                android:paddingVertical="0dp"
+                android:paddingHorizontal="8dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:drawableTint="@color/accent"
+                android:background="@drawable/nav_shape"
+                app:backgroundTint="@color/accent_tint"
+                app:layout_constraintLeft_toRightOf="@id/status"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/type"
+                />
+
+            <Button
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="..."
+                android:drawableLeft="@drawable/ic_round_face_24"
+                android:textColor="@color/accent"
+                android:fontFamily="@font/quicksandregular"
+                android:textSize="14dp"
+                android:paddingVertical="0dp"
+                android:paddingHorizontal="8dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:drawableTint="@color/accent"
+                app:layout_constraintLeft_toRightOf="@id/type"
+                android:background="@drawable/nav_shape"
+                app:backgroundTint="@color/accent_tint"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                />
+
+            <Button
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="..."
+                android:drawableLeft="@drawable/ic_round_equalizer_24"
+                android:textColor="@color/accent"
+                android:fontFamily="@font/quicksandregular"
+                android:textSize="14dp"
+                android:paddingVertical="0dp"
+                android:paddingHorizontal="8dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:drawableTint="@color/accent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="@drawable/nav_shape"
+                app:backgroundTint="@color/accent_tint"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/type"
+                />
+
+            <Button
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="..."
+                android:drawableLeft="@drawable/ic_round_book_24"
+                android:textColor="@color/accent"
+                android:fontFamily="@font/quicksandregular"
+                android:textSize="14dp"
+                android:paddingVertical="0dp"
+                android:paddingHorizontal="8dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:drawableTint="@color/accent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="@drawable/nav_shape"
+                app:backgroundTint="@color/accent_tint"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:text="..."
+                android:textColor="@color/black"
+                android:fontFamily="@font/quicksandbold"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/genre" />
+
+            <TextView
+                android:id="@+id/genre"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_height="wrap_content"
+                android:text="..."
+                android:textSize="14dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/gray"
+                android:fontFamily="@font/quicksandregular"
+                app:layout_constraintLeft_toLeftOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/mangaimage" />
+
+            <TextView
+                android:id="@+id/sinopsis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/quicksandregular"
+                android:textColor="@color/black"
+                android:text="..."
+                app:layout_constraintTop_toBottomOf="@id/status"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_chapters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/outline"
+                app:layout_constraintTop_toBottomOf="@+id/sinopsis" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/nav_shape"
+        android:layout_margin="20dp"
+        android:padding="16dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_simpan"
+            android:src="@drawable/ic_round_bookmarks_24"
+            android:layout_width="wrap_content"
+            app:tint="@color/gray"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"/>
+
+        <ImageButton
+            android:id="@+id/btn_fav"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_baseline_favorite_24"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            app:tint="@color/gray"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/mulaibaca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Baca Sekarang"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/quicksandsemibold"
+            android:gravity="center_horizontal"
+            android:background="@drawable/nav_shape"
+            app:backgroundTint="@color/accent"
+            />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

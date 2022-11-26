@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/parenthome"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo"/>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ohayo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/quicksandsemibold"
+                android:text="Ohayou"
+                android:textSize="14dp"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ohayo"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/quicksandbold"
+                android:text="John Doe"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="24dp"
+        android:layout_alignParentLeft="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trending Now"
+                android:textColor="@color/black"
+                android:fontFamily="@font/quicksandbold"
+                android:textSize="24dp"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Populer"
+                android:textSize="24dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/quicksandbold"
+                android:layout_marginTop="16dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/populer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Random"
+                android:textSize="24dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/quicksandbold"
+                android:layout_marginTop="16dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/random"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_lanjut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="20dp"
+        app:cardCornerRadius="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:background="@drawable/gradien">
+
+            <TextView
+                android:id="@+id/lanjut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lanjutkan Membaca"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/quicksandsemibold"/>
+
+            <ImageButton
+                android:id="@+id/tutup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_round_close_24"
+                android:padding="0dp"
+                android:background="@android:color/transparent"
+                android:layout_alignParentRight="true" />
+
+            <ImageButton
+                android:id="@+id/nav_riwayat"
+                android:layout_below="@+id/lanjut"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@drawable/ic_round_history_24"
+                android:background="@drawable/nav_shape"
+                app:backgroundTint="@color/white"
+                android:layout_marginRight="8dp"
+                />
+
+            <RelativeLayout
+                android:id="@+id/lanjutbaca"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_below="@+id/lanjut"
+                android:background="@drawable/nav_shape"
+                android:backgroundTint="@color/white"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/nav_riwayat"
+                >
+
+                <TextView
+                    android:id="@+id/lanjut_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksandbold"
+                    android:text="Chainsaw Man"
+                    android:textColor="@color/black"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/lanjut_chapter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lanjut_title"
+                    android:fontFamily="@font/quicksandsemibold"
+                    android:text="Chapter 18"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:rotation="-90"
+                    android:background="@drawable/ic_round_expand_more_24" />
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
