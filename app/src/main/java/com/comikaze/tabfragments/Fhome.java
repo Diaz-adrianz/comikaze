@@ -124,18 +124,20 @@ public class Fhome extends Fragment {
                     startActivity(go);
                 }
             });
+
+            btn_tutupLanjut = v.findViewById(R.id.tutup);
+            btn_tutupLanjut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    parentHome.removeView(cardLanjut);
+                }
+            });
         } else {
             parentHome.removeView(cardLanjut);
         }
 
 
-        btn_tutupLanjut = v.findViewById(R.id.tutup);
-        btn_tutupLanjut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                parentHome.removeView(cardLanjut);
-            }
-        });
+
 
         topheader.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,6 +246,8 @@ public class Fhome extends Fragment {
              }
              @Override
              public void onFailure(Call<ManList> call, Throwable t) {
+                 loading.dismiss();
+
                  Toast.makeText(getContext(), "Gagal mengambil data :(", Toast.LENGTH_SHORT).show();
              }
          }

@@ -1,13 +1,22 @@
 package com.comikaze;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +24,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.comikaze.adapters.CardVert;
+import com.comikaze.adapters.CardVertMine;
+import com.comikaze.helpers.LoadImageFromInternet;
+import com.comikaze.helpers.LocalStorage;
+import com.comikaze.helpers.RecyclerTouchListener;
 import com.comikaze.models.ManList;
 import com.comikaze.models.Mans;
+import com.comikaze.models.UserPreference;
 import com.comikaze.rest.Rest;
 
 import java.util.ArrayList;
@@ -29,12 +43,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CreatorActivity extends AppCompatActivity {
 
-    private ImageButton btn_back;
+    private ImageButton btn_back, btn_refresh;
     private Button btn_new;
     private RecyclerView rv_mine;
-    private CardVert adp_hasil;
+    private CardVertMine adp_hasil;
 
-    private ArrayList<Mans> komiks;
+    private SharedPreferences sp;
+    private ArrayList<UserPreference> komikSaya;
+
+    private LinearLayout parentXML;
+    private TextView jumlahView;
 
     @SuppressLint({"MissingInflatedId", "SetTextI18n", "WrongViewCast"})
     @Override
@@ -46,11 +64,23 @@ public class CreatorActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_creator);
 
+        parentXML = findViewById(R.id.parentXML);
+
+        jumlahView = findViewById(R.id.jumlah);
         rv_mine = findViewById(R.id.rv_mine);
+        btn_refresh = findViewById(R.id.btn_refresh);
         btn_back = findViewById(R.id.btn_back);
         btn_new = findViewById(R.id.btn_newcomic);
 
-        getData("mob psycho");
+        sp = getSharedPreferences("user", Context.MODE_PRIVATE);
+        LocalStorage lokal = new LocalStorage(sp, komikSaya, "komiksaya");
+        komikSaya = lokal.getRiwayatBaca();
+
+        jumlahView.setText("Terdapat " + komikSaya.size());
+
+        adp_hasil = new CardVertMine(CreatorActivity.this, komikSaya);
+        rv_mine.setLayoutManager(new LinearLayoutManager(CreatorActivity.this, LinearLayoutManager.VERTICAL, false));
+        rv_mine.setAdapter(adp_hasil);
 
         btn_new.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,50 +97,56 @@ public class CreatorActivity extends AppCompatActivity {
             }
         });
 
+        btn_refresh.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onClick(View view) {
+                Intent t= new Intent(CreatorActivity.this, CreatorActivity.class);
+                startActivity(t);
+                finish();
+            }
+        });
+
+        rv_mine.addOnItemTouchListener(new RecyclerTouchListener(this, rv_mine, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {}
+
+            @Override
+            public void onLongClick(View view, int position) {
+                final Dialog dialog = new Dialog(CreatorActivity.this);
+                dialog.setContentView(R.layout.custom_dialog);
+                Button positive = dialog.findViewById(R.id.positive);
+                Button negative = dialog.findViewById(R.id.negative);
+                TextView head = dialog.findViewById(R.id.head);
+                TextView txt = dialog.findViewById(R.id.txt);
+
+                head.setText("Apakah Kamu Yakin?");
+                txt.setText("Aksi ini akan menghapus permanen komik : " + komikSaya.get(position).getTitle());
+
+                positive.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onClick(View v) {
+                        komikSaya.remove(position);
+                        adp_hasil.notifyDataSetChanged();
+                        jumlahView.setText("Terdapat " + komikSaya.size());
+
+                        lokal.setRiwayatBaca(komikSaya);
+                        dialog.dismiss();
+                    }
+                });
+
+                negative.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        }));
     }
 
-    private void getData(String value) {
-        final String ROOT_URL = "https://fourtour.site/";
-        final ProgressDialog loading = ProgressDialog.show(CreatorActivity.this, "Mengambil data", "Mohon tunggu..", false, false);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ROOT_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        Rest service = retrofit.create(Rest.class);
-        Call<ManList> call = service.getManList("search", value);
-        call.enqueue(new Callback<ManList>() {
-             @SuppressLint("SetTextI18n")
-             @Override
-             public void onResponse(Call<ManList> call, Response<ManList> response) {
-                 try {
-
-                     loading.dismiss();
-
-                     if( response.body().getStatus()) {
-                         komiks = response.body().getMangaList();
-
-                         adp_hasil = new CardVert(CreatorActivity.this, komiks);
-                         rv_mine.setLayoutManager(new LinearLayoutManager(CreatorActivity.this, LinearLayoutManager.VERTICAL, false));
-                         rv_mine.setAdapter(adp_hasil);
-                     } else {
-                         Toast.makeText(CreatorActivity.this, "Gagal mengambil data :(", Toast.LENGTH_SHORT).show();
-                     }
-
-
-                 } catch (Exception e) {
-                     e.printStackTrace();
-                 }
-             }
-
-             @Override
-             public void onFailure(Call<ManList> call, Throwable t) {
-                 loading.dismiss();
-
-                 Toast.makeText(CreatorActivity.this, "Gagal mengambil data :(", Toast.LENGTH_SHORT).show();
-             }
-
-         }
-        );
-    }
 }

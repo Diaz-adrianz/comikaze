@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:id="@+id/parentXML"
+    android:padding="20dp">
 
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,7 +28,8 @@
             />
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content">
 
             <TextView
@@ -53,7 +54,21 @@
                 android:textSize="16dp"
                 android:layout_alignParentRight="true" />
         </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/btn_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_refresh_24"
+            android:background="@drawable/nav_shape"
+            android:backgroundTint="@color/accent_tint"
+            app:tint="@color/accent"
+            android:padding="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center_vertical"
+            />
     </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_mine"
@@ -62,6 +77,7 @@
         android:layout_weight="1"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/jumlahSave" />
+
 
     <Button
         android:id="@+id/btn_newcomic"

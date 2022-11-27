@@ -177,6 +177,8 @@ public class Fcategory extends Fragment {
 
              @Override
              public void onFailure(Call<ManList> call, Throwable t) {
+                 loading.dismiss();
+
                  Toast.makeText(getContext(), "Gagal mengambil data :(", Toast.LENGTH_SHORT).show();
              }
 
