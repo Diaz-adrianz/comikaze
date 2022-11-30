@@ -28,6 +28,7 @@
         <activity android:name=".RiwayatActivity"/>
         <activity android:name=".SimpanActivity"/>
         <activity android:name=".FavoritActivity"/>
+        <activity android:name=".SharedActivity"/>
         <activity android:name=".CreatorActivity"/>
         <activity android:name=".CreatorUploadActivity"/>
 

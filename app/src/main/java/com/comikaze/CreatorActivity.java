@@ -98,7 +98,6 @@ public class CreatorActivity extends AppCompatActivity {
         });
 
         btn_refresh.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View view) {
                 Intent t= new Intent(CreatorActivity.this, CreatorActivity.class);

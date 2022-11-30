@@ -2,19 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:background="@color/black"
+    android:background="@drawable/gradien_noradius"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/gradien"
-        />
 
     <ImageView
         android:layout_width="270dp"
@@ -40,8 +29,7 @@
         android:textSize="16dp"
         android:textColor="@color/silver"
         android:background="@color/black"
-        android:paddingHorizontal="16dp"
-        android:paddingTop="16dp"
+        android:paddingVertical="16dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.comikaze;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,7 +47,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DetailActivity extends AppCompatActivity {
 
-    ImageButton btnBack, btnSimpan, btnFav;
+    ImageButton btnBack, btnSimpan, btnFav, btnShare;
     ImageView thumbView;
     Button typeView, ageView, statusView, authorView, mulaiBaca;
     TextView titleView, genreView, synopsisView;
@@ -55,11 +56,11 @@ public class DetailActivity extends AppCompatActivity {
     private Card adp_chapters;
     private SharedPreferences sp;
     private ArrayList<Details_chapters> chapters;
-    private ArrayList<UserPreference> chapters2 = new ArrayList<>(), simpananKomik = new ArrayList<>(), favoritKomik = new ArrayList<>();
+    private ArrayList<UserPreference> chapters2 = new ArrayList<>(), simpananKomik = new ArrayList<>(), favoritKomik = new ArrayList<>(), bagiKomik = new ArrayList<>();
     private String endpoint, title;
-    private LocalStorage lokalSuka, lokalSimpan;
-    private boolean liked = false, saved = false;
-    private int likedPos, savedPos;
+    private LocalStorage lokalSuka, lokalSimpan, lokalBagi;
+    private boolean liked = false, saved = false, shared = false;
+    private int likedPos, savedPos, sharedPos;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -85,6 +86,7 @@ public class DetailActivity extends AppCompatActivity {
         rv_chapters = findViewById(R.id.rv_chapters);
 
         btnBack = findViewById(R.id.btn_back);
+        btnShare = findViewById(R.id.btn_share);
         mulaiBaca = findViewById(R.id.mulaibaca);
         btnSimpan = findViewById(R.id.btn_simpan);
         btnFav = findViewById(R.id.btn_fav);
@@ -123,6 +125,27 @@ public class DetailActivity extends AppCompatActivity {
                 go.putExtra("title", String.valueOf(titleView.getText()));
 
                 startActivity(go);
+            }
+        });
+
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String type = String.valueOf(typeView.getText());
+
+                Intent bagikan = new Intent();
+                bagikan.setAction(Intent.ACTION_SEND);
+                bagikan.putExtra(Intent.EXTRA_TEXT,"Saya menemukan " + type + " bagus nih \n'" + title
+                        + "'\n\nSaya nyaman banget baca " + type + " ini di aplikasi Comikaze\n"
+                        + "Ayo aplikasinya di link berikut ini \n" );
+                bagikan.setType("text/plain");
+                startActivity(Intent.createChooser(bagikan, "Bagikan dengan"));
+
+                if (!shared) {
+                    bagiKomik.add(0, new UserPreference(title, type, endpoint));
+                }
+
+                lokalBagi.setRiwayatBaca(bagiKomik);
             }
         });
 
@@ -180,6 +203,16 @@ public class DetailActivity extends AppCompatActivity {
             if ( favoritKomik.get(i).getTitle().equals(title) ) {
                 liked = true;
                 likedPos = i;
+            }
+        }
+
+        lokalBagi = new LocalStorage(sp, bagiKomik, "dibagikan");
+        bagiKomik = lokalBagi.getRiwayatBaca();
+
+        for (int i = 0; i < bagiKomik.size(); i++) {
+            if (bagiKomik.get(i).getTitle().equals(title)) {
+                shared = true;
+                sharedPos = i;
             }
         }
 

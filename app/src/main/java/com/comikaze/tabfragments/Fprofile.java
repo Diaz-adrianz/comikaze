@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.comikaze.FavoritActivity;
 import com.comikaze.R;
 import com.comikaze.RiwayatActivity;
+import com.comikaze.SharedActivity;
 import com.comikaze.SimpanActivity;
 
 public class Fprofile extends Fragment {
@@ -54,6 +55,14 @@ public class Fprofile extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent go = new Intent(getContext(), FavoritActivity.class);
+                startActivity(go);
+            }
+        });
+
+        nav_dibagikan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go = new Intent(getContext(), SharedActivity.class);
                 startActivity(go);
             }
         });

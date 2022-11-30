@@ -1,6 +1,7 @@
 package com.comikaze.adapters;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -69,6 +70,8 @@ public class Card extends RecyclerView.Adapter<Card.ViewHoldering> {
                     go = new Intent(context, BacaActivity.class);
                     go.putExtra("endpoint_chapter", model.get(i).getEndpoint());
                     go.putExtra("title", model.get(i).getTitle());
+
+                    ((Activity)context).finish();
                 }
 
                 context.startActivity(go);
