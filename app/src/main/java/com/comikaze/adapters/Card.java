@@ -58,7 +58,7 @@ public class Card extends RecyclerView.Adapter<Card.ViewHoldering> {
             h.subtitle.setText(model.get(i).getTitle());
         }
 
-        h.title.setOnClickListener(new View.OnClickListener() {
+        h.arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent go = null;
@@ -86,9 +86,11 @@ public class Card extends RecyclerView.Adapter<Card.ViewHoldering> {
 
     public static class ViewHoldering extends RecyclerView.ViewHolder {
         private final TextView title, subtitle;
+        private final ImageView arrow;
 
         public ViewHoldering(@NonNull View itemView) {
             super(itemView);
+            arrow = itemView.findViewById(R.id.arrow);
             title = itemView.findViewById(R.id.title);
             subtitle = itemView.findViewById(R.id.subtitle);
         }

@@ -136,8 +136,8 @@ public class DetailActivity extends AppCompatActivity {
                 Intent bagikan = new Intent();
                 bagikan.setAction(Intent.ACTION_SEND);
                 bagikan.putExtra(Intent.EXTRA_TEXT,"Saya menemukan " + type + " bagus nih \n'" + title
-                        + "'\n\nSaya nyaman banget baca " + type + " ini di aplikasi Comikaze\n"
-                        + "Ayo aplikasinya di link berikut ini \n" );
+                        + "'\n\nSelain itu saya nyaman banget baca " + type + " ini di aplikasi Comikaze dari tim Chocoding\n"
+                        + "Ayo unduh aplikasinya di link berikut ini. GRATIS \nhttps://drive.google.com/drive/folders/1VBOTHKMDYjLMyeoprA0OgsufuCBKnyL4?usp=sharing" );
                 bagikan.setType("text/plain");
                 startActivity(Intent.createChooser(bagikan, "Bagikan dengan"));
 

@@ -59,7 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Kaifuku Jutsushi Yarinaoshi: Sokushi Mahou to Skill Copy no Chouetsu Heal Chapter 48"
+            android:text="Judul Chapter..."
             android:textSize="16sp"
             android:maxLines="1"
             android:textAlignment="textEnd"
